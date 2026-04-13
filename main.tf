@@ -1,12 +1,8 @@
-module "s3_internal" {
-  # Richiama il modulo finale tramite Git
-  source = "git::https://github.com/org/terraform-aws-s3.git?ref=v1.0.0"
+module "file_generator" {
+  # Richiama il modulo finale via Git
+  source = "git::https://github.com/tuo-account/terraform-local-file.git?ref=v1.0.0"
 
-  # Costruisce il nome del bucket usando le variabili ricevute dal wrapper
-  bucket_name = "company-${var.app_name}-${var.environment}-data"
-  
-  tags = {
-    ManagedBy = "Terraform-Wrapper"
-    Env       = var.environment
-  }
+  # Costruisce il percorso e il contenuto passandoli al modulo finale
+  file_path = "${path.root}/generated_${var.app_name}.txt"
+  content   = "Log Generato per: ${var.app_name}\nMessaggio: ${var.message}"
 }

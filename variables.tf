@@ -1,9 +1,7 @@
 variable "app_name" {
-  description = "Nome dell'applicazione"
-  type        = string
+  type = string
 }
 
-variable "environment" {
-  description = "Ambiente (dev/prod)"
-  type        = string
+variable "message" {
+  type = string
 }
